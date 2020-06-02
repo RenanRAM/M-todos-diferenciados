@@ -1,4 +1,4 @@
-public class Round{
+public class Round{//USE Round.duplo9(double, int)  o double é o número para arredondar e o int é a casa decimal, funciona com casas negativas também
 
   public static double duplo9(double val, int ind){
     byte indice;
