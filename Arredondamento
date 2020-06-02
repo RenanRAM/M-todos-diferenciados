@@ -1,0 +1,43 @@
+public class Round{
+
+  public static double duplo9(double val, int ind){
+    byte indice;
+    boolean aumentar = false;
+    long np = (long) Math.floor(val * 10000000000l);
+    if(ind < 10){
+      indice = (byte) (10 - ind);
+      byte[] decom = decomporlongo(np);
+      if(decom[indice - 1] > 5){
+        aumentar = true;
+      }else if((decom[indice - 1] == 5) && (decom[indice] % 2 == 1)){        
+        aumentar = true;        
+      }
+      if(aumentar){
+        val = Math.floor(((val * Math.pow(10, ind))) + 1) / Math.pow(10, ind);
+      }else{
+         val = Math.floor((val * Math.pow(10, ind))) / Math.pow(10, ind);
+      }      
+      return val;
+    }else{
+      System.out.println("Não é possível arredondar com estes argumentos");
+      return 0;
+    }
+  }
+  private static byte[] decomporlongo(long ndn){      
+    byte cont = 0;
+    boolean unum = false;
+    while(!unum){     
+      if(Math.floor(ndn/(Math.pow(10, cont))) == 0){
+        unum = true;
+      }else{
+        cont++;
+      }
+    }
+    byte[] vetn = new byte[cont];
+    for(int x = 0; x < vetn.length; x++){
+      vetn[x] = (byte) (Math.floor(ndn / Math.pow(10, x)) -  10 * (Math.floor(ndn / Math.pow(10, (x + 1)))));   
+    }  
+    return vetn;
+  }
+
+}
