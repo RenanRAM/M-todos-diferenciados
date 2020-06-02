@@ -1,0 +1,147 @@
+/**
+ * Operações disponíveis: °norepeat()retorna ao vetor sem números repetidos °somartudo()(retorna a inteiro) °inverter()inverte o vetor °ordenar()ordena o vetor
+ * °decomporlongo(decompõe long em byte[]) retorna a um vetor byte[] com cada dígito do número long informado
+ * °comporlongo(byte[]) compõe um long com base no vetor informado, oposto do decompor
+ */
+public class Op_vetor {
+    
+  public static void main(String[] args) {
+   
+  }
+  public static int[] ordenar(int[] sord){
+    int ori = 0;
+    int ori1 = 0;
+    int jj = 0;
+    for(ori = 0; ori < sord.length; ori++){
+      for(ori1 = ori + 1; ori1 < sord.length; ori1++){
+        if(sord[ori] > sord[ori1]){
+          jj = sord[ori];
+          sord[ori] = sord[ori1];
+          sord[ori1] = jj;          
+        }
+      }
+    }    
+    System.out.println("ordenar_int executado");
+    return sord; 
+  }
+  public static double[] ordenar(double[] sord){
+    int ori = 0;
+    int ori1 = 0;
+    double jj = 0;
+    for(ori = 0; ori < sord.length; ori++){
+      for(ori1 = ori + 1; ori1 < sord.length; ori1++){
+        if(sord[ori] > sord[ori1]){
+          jj = sord[ori];
+          sord[ori] = sord[ori1];
+          sord[ori1] = jj;          
+        }
+      }
+    }    
+    System.out.println("ordenar_double executado");
+    return sord;        
+  }
+  public static int[] inverter(int[] mmo){
+    int mm = 0;
+    int tip = 0;    
+    for(tip = 0; tip < mmo.length; tip++){
+      if(tip < mmo.length - tip){
+        mm = mmo[tip];
+        mmo[tip] = mmo[(mmo.length - 1) - tip];
+        mmo[(mmo.length - 1) - tip] = mm;
+      }else{
+        break;
+      }
+    }
+    System.out.println("inverter executado");
+    return mmo;    
+  }
+  
+    public static byte[] inverter(byte[] mmo){
+    byte mm = 0;
+    int tip = 0;    
+    for(tip = 0; tip < mmo.length; tip++){
+      if(tip < mmo.length - tip){
+        mm = mmo[tip];
+        mmo[tip] = mmo[(mmo.length - 1) - tip];
+        mmo[(mmo.length - 1) - tip] = mm;
+      }else{
+        break;
+      }
+    }
+    System.out.println("inverter executado");
+    return mmo;    
+  }
+  
+  public static int somartudo(int[] lin){
+    int vss;
+    int somat = 0;
+    for(vss = 0; vss < lin.length; vss++){
+      somat += lin[vss];
+    }
+    System.out.println("somartudo executado");
+    return somat;
+  }
+  public static int[] norepeat(int[] salgado){      
+    int rep[] = new int[salgado.length];
+    boolean test = false;
+    boolean start = true;
+    int tep = 0;
+    int tt = 0;
+    for(tt = 0; tt < salgado.length; tt++){
+      test = false;
+      for(int rr = 0; rr <=tep; rr++){
+        if((salgado[tt] == rep[rr])){
+          test = true;
+          break;
+        }
+      }
+      if(test == false){
+        if(start){
+          rep[tep] = salgado[tt];
+          start = false;
+        }else{
+          tep++;
+          rep[tep] = salgado[tt];
+        }
+        
+     }
+      
+    }
+    int[] nrep = new int[tep + 1];
+    for(tt = 0; tt <= tep; tt++){
+      nrep[tt] = rep[tt]; 
+    }
+     System.out.println("norepeat executado");
+    return nrep;    
+  }
+  
+  public static byte[] decomporlongo(long ndn){      
+    byte cont = 0;
+    boolean unum = false;
+    while(!unum){     
+      if(Math.floor(ndn/(Math.pow(10, cont))) == 0){
+        unum = true;
+      }else{
+        cont++;
+      }
+    }
+    byte[] vetn = new byte[cont];
+    for(int x = 0; x < vetn.length; x++){
+      vetn[x] = (byte) (Math.floor(ndn / Math.pow(10, x)) -  10 * (Math.floor(ndn / Math.pow(10, (x + 1)))));   
+    }       
+    return vetn;
+  }
+  
+  public static long comporlongo(byte[] dcom){
+    long retorno = 0l;
+    try{
+      for(byte a = 0; a < dcom.length; a++){
+        retorno += Math.abs(dcom[a] * Math.pow(10, a));    
+      }  
+    }catch(Exception ex){
+      System.out.println("Erro");
+    }
+    return retorno;
+  }
+  
+}
